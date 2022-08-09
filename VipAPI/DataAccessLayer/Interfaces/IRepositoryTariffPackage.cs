@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IRepositoryTeriffPackage: IRepository<TariffPackage>
+    public interface IRepositoryTariffPackage: IRepository<TariffPackage>
     {
     }
 }

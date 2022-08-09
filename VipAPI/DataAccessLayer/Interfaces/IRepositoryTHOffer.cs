@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    internal interface IRepositoryTHOffer: IRepository<THOffer>
+    public interface IRepositoryTHOffer: IRepository<THOffer>
     {
     }
 }

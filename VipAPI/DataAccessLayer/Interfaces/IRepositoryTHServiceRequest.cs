@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    internal interface IRepositoryTHServiceRequest: IRepository<THServiceRequest>
+    public interface IRepositoryTHServiceRequest: IRepository<THServiceRequest>
     {
     }
 }
