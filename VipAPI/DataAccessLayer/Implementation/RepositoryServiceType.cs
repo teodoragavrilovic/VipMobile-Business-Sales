@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.Domain;
 using System;
@@ -33,9 +34,10 @@ namespace DataAccessLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<List<ServiceType>> GetAll()
+        public async Task<List<ServiceType>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await context.ServiceTypes.ToListAsync();
+            return result;
         }
 
         public void Update(ServiceType enthity)

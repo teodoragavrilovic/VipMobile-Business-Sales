@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MaMaZt0ZHP9rmYwKXostYLTR3Q1zY7ragqcO9eAwjWm7jNHKWOlSaW5ODdSTVdiQDmF8pfT+gKyeTG796PiWqA==",
+  "dgSpecHash": "dw4bRVcUGlvJutEIHl4l7PdKb/zHuXPnDmnvhnkKXn6DqCKnK53NWsDFCm2czVTn+DNHcCINnvpUJOqaKVinqQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Teodora\\Documents\\GitHub\\VipMobile-Business-Sales\\VipAPI\\Model\\Model.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Teodora\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Teodora\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Teodora\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",

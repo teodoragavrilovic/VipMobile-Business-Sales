@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Nova ponuda</h1>
+<div mat-dialog-content>
+    <form [formGroup]="ThOfferForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Zahtev</mat-label>
+            <mat-select formControlName="thServiceRequest"  [(value)]="selectedThServiceRequest">
+              <mat-option *ngFor="let thServiceRequest of thServiceRequests" [value]="thServiceRequest.thServiceRequestId" (click)="selectThServiceRequests(thServiceRequest)" >
+                {{thServiceRequest.requestDate}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Zaposleni</mat-label>
+            <mat-select formControlName="employee"  [(value)]="selectedEmployee">
+              <mat-option *ngFor="let employee of Employees" [value]="employee.employeeId" (click)="selectEmployees(employee)" >
+                {{employee.name + " " + employee.surname}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Datum ponude</mat-label>
+            <input matInput [matDatepicker]="offerDate" formControlName="offerDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="offerDate"></mat-datepicker-toggle>
+            <mat-datepicker #offerDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Rok za potvrdu</mat-label>
+            <input matInput [matDatepicker]="confirmationDeadline" formControlName="confirmationDeadline">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="confirmationDeadline"></mat-datepicker-toggle>
+            <mat-datepicker #confirmationDeadline></mat-datepicker>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="thService">
+        <th mat-header-cell *matHeaderCellDef> Naziv servisa </th>
+        <td mat-cell *matCellDef="let element"> {{element.thService.serviceName}} </td>
+        <th mat-header-cell *matHeaderCellDef> Cena servisa </th>
+        <td mat-cell *matCellDef="let element"> {{element.thService.servicePrice}} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="thService.servicePrice">
+        <th mat-header-cell *matHeaderCellDef> Cena servisa </th>
+        <td mat-cell *matCellDef="let element"> {{element.tHService.servicePrice}} </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="activationDate">
+        <th mat-header-cell *matHeaderCellDef> Datum aktivacije </th>
+        <td mat-cell *matCellDef="let element"> {{element.activationDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; index as i ">
+            <button mat-icon-button color="primary" (click)="editTHOfferItem(element,i)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="deleteTHOfferItem(element,i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<div mat-dialog-action [align]="'end'">
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addOfferItem()">{{actionBtn2}}</button>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Odustani</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="saveThOffer()">{{actionBtn1}}</button>
+</div>

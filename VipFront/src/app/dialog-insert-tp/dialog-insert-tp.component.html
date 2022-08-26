@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Novi tarifni paket</h1>
+<div mat-dialog-content>
+    <form [formGroup]="TariffPackageForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Vrsta paketa</mat-label>
+            <mat-select formControlName="packageType"  [(value)]="selectedPackageType">
+              <mat-option *ngFor="let packageType of packageTypes" [value]="packageType.packageTypeId" (click)="selectPackageTypes(packageType)" >
+                {{packageType.typeName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Naziv paketa</mat-label>
+            <input formControlName="tariffPackageName" matInput type="string" placeholder="Unesi naziv">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Broj minuta</mat-label>
+            <input formControlName="avlbMinutes" matInput placeholder="Unesi minute">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Broj poruka</mat-label>
+            <input formControlName="avlbSMS" matInput placeholder="Unesi poruke">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Količina MB</mat-label>
+            <input formControlName="avlbMB" matInput placeholder="Unesi MB">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cena</mat-label>
+            <input formControlName="price" matInput placeholder="Unesi cenu">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Odustani</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="saveTariffPackage()">{{actionBtn}}</button>
+   
+</div>

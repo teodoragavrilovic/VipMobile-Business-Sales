@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.Domain;
 using System;
@@ -20,12 +21,20 @@ namespace DataAccessLayer.Implementation
 
         public void Add(TariffPackage enthity)
         {
-            throw new NotImplementedException();
+            enthity.PackageType = context.PackageTypes.Find(enthity.PackageType.PackageTypeId);
+            try
+            {
+                context.Add(enthity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Delete(TariffPackage enthity)
         {
-            throw new NotImplementedException();
+            context.Remove(enthity);
         }
 
         public Task<TariffPackage> FindById(int id)
@@ -33,14 +42,20 @@ namespace DataAccessLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<List<TariffPackage>> GetAll()
+        public async Task<List<TariffPackage>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await context.TariffPackages.ToListAsync();
+            foreach(var package in result)
+            {
+                package.PackageType = context.PackageTypes.Find(package.PackageTypeId);
+            }
+            return result;
         }
 
         public void Update(TariffPackage enthity)
         {
-            throw new NotImplementedException();
+            enthity.PackageType = context.PackageTypes.Find(enthity.PackageType.PackageTypeId);
+            context.Update(enthity);
         }
     }
 }

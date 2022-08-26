@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Nova stavka</h1>
+<div mat-dialog-content>
+    <form [formGroup]="OfferItemForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Usluga</mat-label>
+            <mat-select formControlName="tHService"  [(value)]="selectedTHService">
+              <mat-option *ngFor="let tHService of tHServices" [value]="tHService.thServiceId" (click)="selectThServiceRequests(tHService)" >
+                {{tHService.serviceName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Datum aktivacije</mat-label>
+            <input matInput [matDatepicker]="activationDate" formControlName="activationDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="activationDate"></mat-datepicker-toggle>
+            <mat-datepicker #activationDate></mat-datepicker>
+        </mat-form-field>
+    </form>
+</div>
+<div>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addOfferItem()">{{actionBtn}}</button>
+</div>

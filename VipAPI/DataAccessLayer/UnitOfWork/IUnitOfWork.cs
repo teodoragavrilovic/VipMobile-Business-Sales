@@ -18,6 +18,6 @@ namespace DataAccessLayer.UnitOfWork
         public IRepositoryTHOffer THOfferRepository { get; set; }
         public IRepositoryTHService THServiceRepository { get; set; }
         public IRepositoryTHServiceRequest THServiceRequestRepository { get; set; }
-
+        void Commit();
     }
 }

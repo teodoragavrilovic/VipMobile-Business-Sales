@@ -1,3 +1,5 @@
+using AutoMapper;
+using DataAccessLayer.UnitOfWork;
 using Model;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<VipContext>(); 
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new VipMapper());
+});
+IMapper mapper = mappingConfig.CreateMapper();
+
+//ovo je falilo da radii!!!
+builder.Services.AddSingleton(mapper);
+
+//ovo dodajem da radi - ovo je kljucno da se doda!!!
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<VipContext>();
 
 var app = builder.Build();
@@ -22,6 +40,11 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x.AllowAnyHeader()
+      .AllowAnyMethod()
+      .WithOrigins("*"));
+
 
 app.UseAuthorization();
 

@@ -1,0 +1,27 @@
+table {
+    width: 80%;
+    margin: 0 10% 5% 10%;
+}
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+}
+
+.example-button-row {
+    display: flex;
+    justify-content: space-around;
+
+}
+ 
+.mat-form-field {
+    font-size: 14px;
+    width: 80%;
+    margin: 5% 10% 0 10%;
+    color: white;
+}

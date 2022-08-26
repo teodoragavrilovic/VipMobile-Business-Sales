@@ -81,29 +81,6 @@ namespace Model.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Model.Domain.OfferItem", b =>
-                {
-                    b.Property<int>("OfferItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("THOfferId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ActivationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("THServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OfferItemId", "THOfferId");
-
-                    b.HasIndex("THOfferId");
-
-                    b.HasIndex("THServiceId");
-
-                    b.ToTable("OfferItems");
-                });
-
             modelBuilder.Entity("Model.Domain.PackageType", b =>
                 {
                     b.Property<int>("PackageTypeId")
@@ -259,25 +236,6 @@ namespace Model.Migrations
                     b.ToTable("THServiceRequests");
                 });
 
-            modelBuilder.Entity("Model.Domain.OfferItem", b =>
-                {
-                    b.HasOne("Model.Domain.THOffer", "THOffer")
-                        .WithMany()
-                        .HasForeignKey("THOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Model.Domain.THService", "THService")
-                        .WithMany()
-                        .HasForeignKey("THServiceId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("THOffer");
-
-                    b.Navigation("THService");
-                });
-
             modelBuilder.Entity("Model.Domain.TariffPackage", b =>
                 {
                     b.HasOne("Model.Domain.PackageType", "PackageType")
@@ -303,7 +261,44 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.OwnsMany("Model.Domain.OfferItem", "OfferItems", b1 =>
+                        {
+                            b1.Property<int>("THOfferId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("OfferItemId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("OfferItemId"), 1L, 1);
+
+                            b1.Property<DateTime>("ActivationDate")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<int>("THServiceId")
+                                .HasColumnType("int");
+
+                            b1.HasKey("THOfferId", "OfferItemId");
+
+                            b1.HasIndex("THServiceId");
+
+                            b1.ToTable("OfferItems");
+
+                            b1.WithOwner()
+                                .HasForeignKey("THOfferId");
+
+                            b1.HasOne("Model.Domain.THService", "THService")
+                                .WithMany()
+                                .HasForeignKey("THServiceId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+
+                            b1.Navigation("THService");
+                        });
+
                     b.Navigation("Employee");
+
+                    b.Navigation("OfferItems");
 
                     b.Navigation("THServiceRequest");
                 });

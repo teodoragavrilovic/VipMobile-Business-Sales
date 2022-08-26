@@ -22,6 +22,6 @@ namespace Model.Domain
 
         public Employee Employee { get; set; }
 
-        public List<OfferItem> OfferItems = new List<OfferItem>();
-    }
+        public List<OfferItem> OfferItems { get; set; }
+}
 }

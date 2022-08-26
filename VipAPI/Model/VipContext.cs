@@ -23,13 +23,16 @@ namespace Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VipBusinessSales;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VipBusinessSalesNew;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             //complex primary key
-           modelBuilder.Entity<OfferItem>().HasKey(e => new { e.OfferItemId, e.THOfferId });
 
+            // modelBuilder.Entity<OfferItem>().HasKey(e => new { e.OfferItemId, e.THOfferId });
+
+            modelBuilder.Entity<THOffer>().OwnsMany(o => o.OfferItems); 
+            // modelBuilder.Entity<THOffer>().HasMany(e => e.OfferItems).WithOne(e => e.THOffer);
             //weak object
             // modelBuilder.Entity<THOffer>().OwnsMany(e => e.OfferItems).WithOwner(i => i.THOffer);
 
@@ -49,7 +52,7 @@ namespace Model
             modelBuilder.Entity<THOffer>().HasOne(e => e.THServiceRequest).WithMany().HasForeignKey(e => e.THServiceRequestId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<THService>().HasOne(e => e.ServiceType).WithMany().HasForeignKey(e => e.ServiceTypeId).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<OfferItem>().HasOne(e => e.THService).WithMany().HasForeignKey(e => e.THServiceId).OnDelete(DeleteBehavior.NoAction);
+           // modelBuilder.Entity<OfferItem>().HasOne(e => e.THService).WithMany().HasForeignKey(e => e.THServiceId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<TariffPackage>().HasOne(e => e.PackageType).WithMany().HasForeignKey(e => e.PackageTypeId).OnDelete(DeleteBehavior.NoAction);
 

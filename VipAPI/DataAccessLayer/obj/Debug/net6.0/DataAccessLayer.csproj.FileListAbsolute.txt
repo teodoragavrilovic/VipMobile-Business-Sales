@@ -1,0 +1,15 @@
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\bin\Debug\net6.0\Model.dll
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\bin\Debug\net6.0\Model.pdb
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CopyComplete
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
