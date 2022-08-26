@@ -8,7 +8,7 @@ import { ThOfferComponent } from './th-offer/th-offer.component';
 const routes: Routes = [
   // {
   //   path: 'auth',
-  //   component: AuthComponent
+  //   component: HomeComponent
   // },
   {
     path: 'tariff-package',

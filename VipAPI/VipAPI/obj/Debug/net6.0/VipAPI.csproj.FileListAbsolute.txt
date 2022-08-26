@@ -265,3 +265,5 @@ C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\VipAPI\bin\Deb
 C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\VipAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\VipAPI\bin\Debug\net6.0\DataAccessLayer.dll
 C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\VipAPI\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\VipAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Teodora\Documents\GitHub\VipMobile-Business-Sales\VipAPI\VipAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

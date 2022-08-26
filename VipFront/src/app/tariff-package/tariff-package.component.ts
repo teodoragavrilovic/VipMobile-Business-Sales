@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TariffPackage } from '../models/tariff-package/tariff-package.model';
 import { TariffPackageService } from '../services/tariff-package/tariff-package.service';
 import { MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogInsertTPComponent } from '../dialog-insert-tp/dialog-insert-tp.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-tariff-package',
@@ -15,6 +17,9 @@ export class TariffPackageComponent implements OnInit {
   //dataSource: TariffPackage[] = [];
   dataSource = new MatTableDataSource<TariffPackage>();
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
   constructor(private tariffPackageService: TariffPackageService, private dialog: MatDialog) { }
 
   openDialog() {

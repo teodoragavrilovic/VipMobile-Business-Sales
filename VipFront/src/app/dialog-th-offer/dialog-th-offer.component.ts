@@ -17,7 +17,7 @@ import { toNumber } from 'lodash';
 })
 export class DialogThOfferComponent implements OnInit {
 
-  displayedColumns: string[] = ['thService','activationDate','action'];
+  displayedColumns: string[] = ['thService', 'thServiceServicePrice', 'activationDate','action'];
   dataSource = new MatTableDataSource<OfferItem>();
 
   ThOfferForm!: FormGroup;
@@ -113,7 +113,7 @@ export class DialogThOfferComponent implements OnInit {
       data[index].thServiceId = this.thOfferService.getTHServiceId();
       data[index].activationDate = this.thOfferService.getActivationDate();
       data[index].thService = this.thServices.filter(thService => thService.thServiceId === this.thOfferService.getTHServiceId())[0]; 
-      data[index].thService.serviceType.description = "jebi se";
+      data[index].thService.serviceType.description = "";
 
       this.dataSource = new MatTableDataSource(data);
       

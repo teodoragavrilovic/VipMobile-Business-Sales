@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Model.Domain;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class VipContext: DbContext
+    public class VipContext: IdentityDbContext<User, IdentityRole<int>,int>
     {
         public DbSet<TariffPackage> TariffPackages { get; set; }
         public DbSet<PackageType> PackageTypes { get; set; }
@@ -25,8 +27,12 @@ namespace Model
         {
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VipBusinessSalesNew;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().ToTable("Users");   
             //complex primary key
 
             // modelBuilder.Entity<OfferItem>().HasKey(e => new { e.OfferItemId, e.THOfferId });

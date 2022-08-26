@@ -1,14 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly baseUrl = ``;
+  private readonly baseUrl = "https://localhost:44315/api/Authentication";
+
+
 
   constructor(
     private http: HttpClient,
@@ -19,11 +23,12 @@ export class AuthService {
     return localStorage.getItem('token') || '';
   }
 
-  // login(params: { email: string, password: string }): Observable<User> {
-  login(params: { email: string, password: string }) {
-    const url = `${this.baseUrl}/login`
-    return this.http.post(url, params);
-    // return this.http.post<User>(url, params);
+
+  login(params: { username: string, password: string }): Observable<{token:string}> {
+    const url = this.baseUrl;
+    //return this.http.post(url, params);
+    //console.log("TU");
+    return this.http.post<{token:string}>(url, params);
   }
 
   loggedIn(): boolean {
@@ -32,6 +37,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/home']);
   }
 }

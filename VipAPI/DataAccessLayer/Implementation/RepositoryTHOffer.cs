@@ -21,14 +21,7 @@ namespace DataAccessLayer.Implementation
 
         public void Add(THOffer entity)
         {
-            //entity.THServiceRequest = context.THServiceRequests.Find(entity.THServiceRequestId);
-            //entity.Employee = context.Employees.Find(entity.EmployeeId);
-            //foreach (var item in entity.OfferItems)
-            //{
-            //    item.THService = context.THServices.Find(item.THServiceId);
-
-            //}
-
+       
             try
             {
 
@@ -61,7 +54,7 @@ namespace DataAccessLayer.Implementation
                 offer.THServiceRequest = context.THServiceRequests.Find(offer.THServiceRequestId);
                 offer.THServiceRequest.Client = context.Clients.Find(offer.THServiceRequest.ClientId);
                 offer.THServiceRequest.Employee = context.Employees.Find(offer.THServiceRequest.EmployeeId);
-                // offer.OfferItems = await context.OfferItems.Where(oi => oi.THOfferId == offer.THOfferId).ToListAsync();
+              
                 foreach (var item in offer.OfferItems)
                 {
                     item.THService = context.THServices.Find(item.THServiceId);
@@ -73,22 +66,22 @@ namespace DataAccessLayer.Implementation
 
         }
 
-        //public int GetIndex(int id, List<OfferItem> list)
-        //{
-        //    if(list == null || list.Count == 0)
-        //    {
-        //        return -1;
-        //    }
-        //    for (int i = 0; i < list.Count; i++)
-        //    {
-        //        if (list[i].OfferItemId == id)
-        //        {
-        //            return i;
-        //        }
-        //    }
-        //    return -1;
-        //}
-        
+        public int GetIndex(int id, List<OfferItem> list)
+        {
+            if (list == null || list.Count == 0)
+            {
+                return -1;
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].OfferItemId == id)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
 
         public void Update(THOffer entity)
         {
@@ -111,11 +104,6 @@ namespace DataAccessLayer.Implementation
                 }
                 if (delete)
                 {
-                    //context.Remove(item);
-                    //context.Entry(item).State = EntityState.Detached;
-                    //context.THOffers.Remove(item);
-                    //context.Entry().State = EntityState.Deleted;
-                    //list.Remove(item);
                     context.Entry(item).State = EntityState.Deleted;
                 }
             }
@@ -140,24 +128,20 @@ namespace DataAccessLayer.Implementation
                         contains = true;
                     }
 
-                    if (!contains)
-                    {
-                        //context.Add(item);
-                        //context.Entry(item).State = EntityState.Added;
-                        //context.SaveChanges();
-                        // context.THOffers.Find(e.OfferItems.Add(item);
-                        thOfferFromDb.OfferItems.Add(item);
-
-                    }
-
+                }
+                if (!contains)
+                {
+                    thOfferFromDb.OfferItems.Add(item);
+                }
+                else
+                {
+                    int id = GetIndex(item.OfferItemId, thOfferFromDb.OfferItems);
+                    thOfferFromDb.OfferItems[id] = item;
                 }
 
-                // context.Entry(entity).State = EntityState.Detached;
-                //context.THOffers.Update(entity);
-
-                context.Update(thOfferFromDb);
-                context.SaveChanges();
             }
+            context.Update(thOfferFromDb);
+            context.SaveChanges();
         }
     }
 }

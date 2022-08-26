@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccessLayer.UnitOfWork;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +33,7 @@ namespace VipAPI.Controllers
 
         // GET: api/TariffPackages
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<List<TariffPackageDTO>>>GetTariffPackages()
         {
             var TariffPackages = await unitOfWork.TariffPackageRepository.GetAll();
@@ -87,6 +91,7 @@ namespace VipAPI.Controllers
             return NoContent();
         }
         [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public void Put([FromBody] TariffPackageDTO tariffPackage)
         {
              TariffPackage tp = new TariffPackage
@@ -106,21 +111,9 @@ namespace VipAPI.Controllers
             unitOfWork.TariffPackageRepository.Update(tp);
             unitOfWork.Commit();
         }
-        // POST: api/TariffPackages
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /* [HttpPost]
-         public async Task<ActionResult<TariffPackage>> PostTariffPackage(TariffPackage tariffPackage)
-         {
-           if (_context.TariffPackages == null)
-           {
-               return Problem("Entity set 'VipContext.TariffPackages'  is null.");
-           }
-             _context.TariffPackages.Add(tariffPackage);
-             await _context.SaveChangesAsync();
-
-             return CreatedAtAction("GetTariffPackage", new { id = tariffPackage.TariffPackageId }, tariffPackage);
-         }*/
+        
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public void PostTariffPackage(TariffPackageDTO tariffPackage)
         {
             TariffPackage tp = new TariffPackage

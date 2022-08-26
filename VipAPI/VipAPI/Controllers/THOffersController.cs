@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccessLayer.UnitOfWork;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +34,7 @@ namespace VipAPI.Controllers
 
        //GET: api/THOffers
        [HttpGet]
+       [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<List<THOfferDTO>>>GetTHOffers()
         {
             var THOffers = await unitOfWork.THOfferRepository.GetAll();
@@ -39,28 +43,13 @@ namespace VipAPI.Controllers
             return Ok(thOfferDTOs);
         }
 
-        // GET: api/THOffers/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<THOffer>> GetTHOffer(int id)
-        {
-          if (_context.THOffers == null)
-          {
-              return NotFound();
-          }
-            var tHOffer = await _context.THOffers.FindAsync(id);
-
-            if (tHOffer == null)
-            {
-                return NotFound();
-            }
-
-            return tHOffer;
-        }
+       
 
         // PUT: api/THOffers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         // [HttpPut("{id}")]
         [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public void PutTHOffer(THOfferDTO tHOfferDTO)
         {
             THOffer entity = new THOffer();
@@ -89,6 +78,7 @@ namespace VipAPI.Controllers
         // POST: api/THOffers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public void PostTHOffer(THOfferDTO tHOfferDTO)
         {
 

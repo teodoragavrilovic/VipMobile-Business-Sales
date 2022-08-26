@@ -14,6 +14,8 @@ import { DialogThOfferComponent } from '../dialog-th-offer/dialog-th-offer.compo
 export class ThOfferComponent implements OnInit {
   displayedColumns: string[] = ['thServiceRequestId', 'requestDate', 'approved', 'employee', 'offerDate', 'confirmationDeadline', 'action'];
   dataSource = new MatTableDataSource<ThOffer>();
+
+  approve:string = "Odobreno";
   
   constructor(private thOfferService: ThOfferService, private dialog: MatDialog) { }
 
@@ -28,6 +30,14 @@ export class ThOfferComponent implements OnInit {
     this.getTHOffers();
   }
 
+  odobreno(od:boolean){
+    if(!od){
+      this.approve= "Odbijeno";
+    }else{
+      this.approve="Odobreno";
+    }
+  }
+
   getTHOffers(){
     this.thOfferService.getThOffers().subscribe( resp =>{
       this.dataSource = new MatTableDataSource(resp);
@@ -37,6 +47,10 @@ export class ThOfferComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if(this.dataSource.paginator){
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   editTHOffer(tHOffer: ThOffer){

@@ -1,6 +1,12 @@
 using AutoMapper;
 using DataAccessLayer.UnitOfWork;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Model;
+using Model.Domain;
+using System.Text;
+using VipAPI.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +35,22 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<VipContext>();
 
+builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores<VipContext>();
+builder.Services.AddScoped<JwtAuthentication>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.RequireHttpsMetadata = true;
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("NemaPristupaBezLozinke"))
+        };
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,6 +69,8 @@ app.UseCors(x => x.AllowAnyHeader()
 
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 

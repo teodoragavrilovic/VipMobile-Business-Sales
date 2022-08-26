@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,7 @@ import { DialogThOfferComponent } from './dialog-th-offer/dialog-th-offer.compon
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogInsertOfferItemComponent } from './dialog-insert-offer-item/dialog-insert-offer-item.component';
+import { TokenInterceptorService } from './core/token-interceptor/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,12 @@ import { DialogInsertOfferItemComponent } from './dialog-insert-offer-item/dialo
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [TariffPackageService],
+  providers: [TariffPackageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
